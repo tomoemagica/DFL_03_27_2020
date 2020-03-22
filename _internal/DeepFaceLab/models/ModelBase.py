@@ -170,10 +170,10 @@ class ModelBase(object):
             # save as default options only for first run model initialize
             self.default_options_path.write_bytes( pickle.dumps (self.options) )
 
-        self.autobackup_hour = self.options.get('autobackup_hour', 1)
+        self.autobackup_hour = self.options.get('autobackup_hour', 0)
         self.write_preview_history = self.options.get('write_preview_history', False)
         self.target_iter = self.options.get('target_iter',0)
-        self.random_flip = self.options.get('random_flip',False)
+        self.random_flip = self.options.get('random_flip',True)
 
         self.on_initialize()
         self.options['batch_size'] = self.batch_size
@@ -278,7 +278,7 @@ class ModelBase(object):
         self.options['target_iter'] = max(0, io.input_int("Target iteration", default_target_iter))
 
     def ask_random_flip(self):
-        default_random_flip = self.load_or_def_option('random_flip', False)
+        default_random_flip = self.load_or_def_option('random_flip', True)
         self.options['random_flip'] = io.input_bool("Flip faces randomly", default_random_flip, help_message="Predicted face will look more naturally without this option, but src faceset should cover all face directions as dst faceset.")
 
     def ask_batch_size(self, suggest_batch_size=None):
@@ -299,30 +299,6 @@ class ModelBase(object):
 
         check example
         '''
-
-        self.options['resolution']            = 256
-        self.options['face_type']             = 'f'
-        self.options['models_opt_on_gpu']     = True
-        self.options['archi']                 = 'dfhd'
-        self.options['ae_dims']               = 512
-        self.options['e_dims']                = 64
-        self.options['d_dims']                = 64
-        self.options['d_mask_dims']           = 48
-        self.options['masked_training']       = True
-        self.options['eyes_prio']             = False
-        self.options['lr_dropout']            = False
-        self.options['random_warp']           = True
-        self.options['gan_power']             = 0.0
-        self.options['true_face_power']       = 0.0
-        self.options['face_style_power']      = 0.0
-        self.options['bg_style_power']        = 0.0
-        self.options['ct_mode']               = 'none'
-        self.options['clipgrad']              = True
-        self.options['pretrain']              = False
-        self.options['random_flip']           = False
-        self.options['autobackup_hour']       = 1
-        self.options['write_preview_history'] = False
-
         pass
 
     #overridable
