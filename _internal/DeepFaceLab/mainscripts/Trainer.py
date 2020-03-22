@@ -313,13 +313,13 @@ def main(**kwargs):
                 io.show_image( wnd_name, (final*255).astype(np.uint8) )
                 is_showing = True
 
-            global auto_c
-            auto_c += 1
-            if (auto_c % 100) == 0:
-                is_waiting_preview = True
-                s2c.put ( {'op': 'preview'} ) 
-            elif auto_c > 36000:
-                auto_c = 0
+                global auto_c
+                auto_c = auto_c + 1
+                if (auto_c % 100) == 0:
+                    is_waiting_preview = True
+                    s2c.put ( {'op': 'preview'} ) 
+                elif auto_c > 36000:
+                    auto_c = 0
 
             key_events = io.get_key_events(wnd_name)
             key, chr_key, ctrl_pressed, alt_pressed, shift_pressed = key_events[-1] if len(key_events) > 0 else (0,0,False,False,False)
