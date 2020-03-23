@@ -1,8 +1,9 @@
 # DFL_03_18_2020
  DFL_03_18_2020
 
-## \8) merged to mp4.bat
-\8) merged to mp4.bat
+## 8) merged to mp4.bat
+
+8) merged to mp4.bat
 
 To read the bit rate automatically from data_dst.mp4,
 
