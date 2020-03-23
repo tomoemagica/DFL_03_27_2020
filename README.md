@@ -33,7 +33,7 @@ VideoEd.py
 You can create videos in H.265 by changing libx264 to libx265.
 
 
-## io.input_skip_pending ()
+## ModelBase.py  io.input_skip_pending ()
 
 During the first train,
 
