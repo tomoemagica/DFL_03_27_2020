@@ -40,6 +40,6 @@ ModelBase.py
 
 After commenting out io.input_skip_pending (), you will be able to input.
 
-# io.input_skip_pending ()
+## io.input_skip_pending ()
 
 No side effects.
