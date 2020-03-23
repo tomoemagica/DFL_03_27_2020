@@ -22,7 +22,7 @@ Before change: -include-audio <tmp.txt
 Change: -include-audio
 
 
-##VideoEd.py
+## VideoEd.py
 
 If you do not have grep and gawk, use VideoEd.py, which is not customized.
 
