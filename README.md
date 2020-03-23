@@ -21,12 +21,17 @@ Before change: -include-audio <tmp.txt
 
 Change: -include-audio
 
+
+##VideoEd.py
+
 If you do not have grep and gawk, use VideoEd.py, which is not customized.
 
 VideoEd.py
 
 You can create videos in H.265 by changing libx264 to libx265.
 
+
+## io.input_skip_pending ()
 
 During the first train,
 
