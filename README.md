@@ -79,3 +79,33 @@ m) data_src close eye.bat
 In the face image under\workspace\data_src\aligned, the face with closed eyes
 
 Move to workspace\data_src\aligned\close_eye folder.
+
+
+# m) data_dst Auto White Balance.bat
+# m) data_dst Contrast Stretch.bat
+# m) data_dst Histogram Stretch(CLAHE).bat
+
+## Preparation
+
+To read the bit rate automatically from data_dst.mp4,
+
+Requires grep and gawk.
+
+These can be used by installing msys64, for example.
+
+## how to use
+
+m) data_dst Auto White Balance.bat
+
+m) data_dst Contrast Stretch.bat
+
+m) data_dst Histogram Stretch(CLAHE).bat
+
+
+## function
+
+Automatically white balance video of data_dst.mp4.
+
+Stretch the contrast of the video of data_dst.mp4.
+
+Stretch the brightness of the video of data_dst.mp4.
