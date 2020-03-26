@@ -8,7 +8,7 @@ mkdir "%WORKSPACE%\data_dst" 2>nul
     --output-dir "%WORKSPACE%\data_dst" ^
     --fps 0
 
-py "%INTERNAL%\faceutil\awb.py"
+"%PYTHON_EXECUTABLE%" "%INTERNAL%\faceutil\awb.py"
 
 ffprobe -i %WORKSPACE%\data_dst.mp4 2>&1 | grep bitrate | gawk -F: '{print $6}' | gawk -F' ' '{print $1}' > tmp.txt
 
