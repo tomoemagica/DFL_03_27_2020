@@ -54,13 +54,13 @@ No side effects.
 
 # m) data_src close eye.bat
 
-Preparation
+## Preparation
 
 Install python
 
 Install dlib
 
-download
+## download
 
 http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2
 
@@ -70,15 +70,11 @@ Unzip the shape_predictor_68_face_landmarks.dat file
 
 Put it under _internal\faceutil\
 
-Or
-
-Execute __shape_predictor_68_face_landmarks.exe.
-
-how to use
+## how to use
 
 m) data_src close eye.bat
 
-function
+## function
 
 In the face image under\workspace\data_src\aligned, the face with closed eyes
 
