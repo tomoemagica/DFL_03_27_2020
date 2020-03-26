@@ -50,3 +50,36 @@ After commenting out io.input_skip_pending (), you will be able to input.
 \# io.input_skip_pending ()
 
 No side effects.
+
+
+# m) data_src close eye.bat
+
+Preparation
+
+Install python
+
+Install dlib
+
+download
+
+http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2
+
+Decompress with WinRar etc.
+
+Unzip the shape_predictor_68_face_landmarks.dat file
+
+Put it under _internal\faceutil\
+
+Or
+
+Execute __shape_predictor_68_face_landmarks.exe.
+
+how to use
+
+m) data_src close eye.bat
+
+function
+
+In the face image under\workspace\data_src\aligned, the face with closed eyes
+
+Move to workspace\data_src\aligned\close_eye folder.
