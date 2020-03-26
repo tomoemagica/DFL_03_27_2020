@@ -1,6 +1,6 @@
 @echo off
 call _internal\setenv.bat
 
-py "%INTERNAL%\faceutil\smile.py"
+"%PYTHON_EXECUTABLE%" "%INTERNAL%\faceutil\smile.py"
 
 pause
