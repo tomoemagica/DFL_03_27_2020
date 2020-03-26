@@ -8,7 +8,7 @@ mkdir "%WORKSPACE%\data_dst" 2>nul
     --output-dir "%WORKSPACE%\data_dst" ^
     --fps 0
 
-py "%INTERNAL%\faceutil\clahe.py"
+"%PYTHON_EXECUTABLE%" "%INTERNAL%\faceutil\clahe.py"
 
 ffprobe -i %WORKSPACE%\data_dst.mp4 2>&1 | grep bitrate | gawk -F: '{print $6}' | gawk -F' ' '{print $1}' > tmp.txt
 
