@@ -11,6 +11,8 @@ Requires grep and gawk.
 
 These can be used by installing msys64, for example.
 
+https://www.msys2.org/
+
 If you don't have grep and gawk, delete the following line:
 
 ffprobe -i% WORKSPACE%\data_dst.mp4 2> & 1 | grep bitrate | gawk -F: '{print $ 6}' | gawk -F '' '{print $ 1}'> tmp.txt
@@ -92,6 +94,8 @@ To read the bit rate automatically from data_dst.mp4,
 Requires grep and gawk.
 
 These can be used by installing msys64, for example.
+
+https://www.msys2.org/
 
 ## how to use
 
