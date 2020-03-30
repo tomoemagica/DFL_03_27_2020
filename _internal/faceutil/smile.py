@@ -41,7 +41,7 @@ smile_face = [
     k, k, g, g, g, g, k, k
 ]
 
-face_cascade = cv2.CascadeClassifier(INTERNAL + "/faceutil/haarcascade_frontalface_alt.xml")
+face_cascade = cv2.CascadeClassifier(INTERNAL + "/faceutil/haarcascade_frontalface_alt2.xml")
 smile_cascade = cv2.CascadeClassifier(INTERNAL + "/faceutil/haarcascade_smile.xml")
 
 for thisFile in os.listdir(target_dir):
@@ -53,7 +53,7 @@ for thisFile in os.listdir(target_dir):
         img_gray = cv2.cvtColor(img_color, cv2.COLOR_BGR2GRAY)
 
         faces = face_cascade.detectMultiScale(
-            img_gray, scaleFactor=1.05, minNeighbors=5, minSize=(45, 45))
+            img_gray, scaleFactor=1.05, minNeighbors=3, minSize=(45, 45))
 
         if len(faces) > 0:
             for (x, y, w, h) in faces:
