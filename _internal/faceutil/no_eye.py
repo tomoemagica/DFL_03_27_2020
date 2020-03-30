@@ -28,7 +28,6 @@ if not path.isdir(no_eye_path):
 face_cascade = cv2.CascadeClassifier(INTERNAL + "/faceutil/haarcascade_frontalface_alt2.xml")
 profile_cascade = cv2.CascadeClassifier(INTERNAL + "/faceutil/haarcascade_profileface.xml")
 eye_cascade = cv2.CascadeClassifier(INTERNAL + "/faceutil/haarcascade_eye.xml")
-#mouth_cascade = cv2.CascadeClassifier(INTERNAL + "/faceutil/haarcascade_mcs_mouth.xml")
 
 for thisFile in os.listdir(target_dir):
     file_name = os.path.join(target_dir, thisFile)
@@ -47,9 +46,6 @@ for thisFile in os.listdir(target_dir):
         eyes = eye_cascade.detectMultiScale(
             img_gray, scaleFactor=1.05, minNeighbors=3, minSize=(30, 30))
 
-#        mouth = mouth_cascade.detectMultiScale(
-#            img_gray, scaleFactor=1.05, minNeighbors=3, minSize=(30, 30))
-#
         if (len(faces) == 1 or len(profiles) == 1) and len(eyes) == 0:
             no_eye_file = os.path.join(no_eye_path, thisFile)
             if os.path.isfile(file_name):
