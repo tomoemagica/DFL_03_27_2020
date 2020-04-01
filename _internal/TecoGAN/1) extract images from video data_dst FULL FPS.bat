@@ -2,6 +2,8 @@
 call ..\setenv.bat
 
 mkdir "%WORKSPACE%\data_dst" 2>nul
+mkdir input 2>nul
+
 
 "%PYTHON_EXECUTABLE%" "%DFL_ROOT%\main.py" videoed extract-video ^
     --input-file "%WORKSPACE%\data_dst.*" ^
