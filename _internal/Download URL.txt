@@ -1,0 +1,5 @@
+TecoGAN.zip
+https://mega.nz/#!vmonEKbK!fxgFFXsD7wCcGNJMU_oydJBkor-QpAxDwuTqtFFMCZo
+
+shape_predictor_68_face_landmarks.dat
+http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2
