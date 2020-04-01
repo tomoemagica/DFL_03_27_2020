@@ -1,6 +1,8 @@
 @echo off
 call ..\setenv.bat
 
+mkdir output 2>nul
+
 cd TGMAIN
 
 echo;
