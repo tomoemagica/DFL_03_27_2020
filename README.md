@@ -54,7 +54,7 @@ After commenting out io.input_skip_pending (), you will be able to input.
 No side effects.
 
 
-# m) data_src close eye.bat
+## m) data_src close eye.bat
 
 ## Preparation
 
@@ -83,9 +83,9 @@ In the face image under\workspace\data_src\aligned, the face with closed eyes
 Move to workspace\data_src\aligned\close_eye folder.
 
 
-# m) data_dst Auto White Balance.bat
-# m) data_dst Contrast Stretch.bat
-# m) data_dst Histogram Stretch(CLAHE).bat
+## m) data_dst Auto White Balance.bat
+## m) data_dst Contrast Stretch.bat
+## m) data_dst Histogram Stretch(CLAHE).bat
 
 ## Preparation
 
