@@ -25,8 +25,6 @@ if not path.isdir(no_mouth_path):
     else:
         print("Successfully created the directory %s " % no_mouth_path)
 
-face_cascade = cv2.CascadeClassifier(INTERNAL + "/faceutil/haarcascade_frontalface_alt2.xml")
-profile_cascade = cv2.CascadeClassifier(INTERNAL + "/faceutil/haarcascade_profileface.xml")
 mouth_cascade = cv2.CascadeClassifier(INTERNAL + "/faceutil/haarcascade_mcs_mouth.xml")
 
 for thisFile in os.listdir(target_dir):
@@ -37,16 +35,10 @@ for thisFile in os.listdir(target_dir):
         img_color = cv2.imread(file_name)
         img_gray = cv2.cvtColor(img_color, cv2.COLOR_BGR2GRAY)
 
-        faces = face_cascade.detectMultiScale(
-            img_gray, scaleFactor=1.05, minNeighbors=3, minSize=(45, 45))
-
-        profiles = profile_cascade.detectMultiScale(
-            img_gray, scaleFactor=1.05, minNeighbors=3, minSize=(30, 30))
-
         mouth = mouth_cascade.detectMultiScale(
             img_gray, scaleFactor=1.05, minNeighbors=3, minSize=(30, 30))
 
-        if (len(faces) == 1 or len(profiles) == 1) and len(mouth) == 0:
+        if len(mouth) == 0:
             no_mouth_file = os.path.join(no_mouth_path, thisFile)
             if os.path.isfile(file_name):
                 move(
