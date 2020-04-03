@@ -5,13 +5,25 @@ from os import path
 import sys
 from pathlib import Path, PureWindowsPath
 
-# Usage: py match_face.py data_src\aligned\00000_0.jpg etc.
+# Usage: py match_face.py 00000_0.jpg etc.
+# Usage: py match_face.py face 00000_0.jpg etc.
+# Usage: py match_face.py frame 00000.png etc.
 
 # Set up commmand line args
-file_to_recognize = sys.argv[1]
+type = sys.argv[1]
+file_to_recognize = sys.argv[2]
 target_dir = os.getcwd()
-target_dir = os.path.join(target_dir, 'data_src', 'aligned')
 
+if type == 'face':
+    target_dir = os.path.join(target_dir, 'data_src', 'aligned')
+    file_to_recognize = os.path.join(target_dir, file_to_recognize)
+elif type == 'frame':
+    target_dir = os.path.join(target_dir, 'data_src')
+    file_to_recognize = os.path.join(target_dir, file_to_recognize)
+else:
+    file_to_recognize = sys.argv[1]
+    target_dir = os.path.join(target_dir, 'data_src', 'aligned')
+    file_to_recognize = os.path.join(target_dir, file_to_recognize)
 
 if not path.isfile(file_to_recognize):
     print("ERROR: File " + str(file_to_recognize) + " isn't valid")
