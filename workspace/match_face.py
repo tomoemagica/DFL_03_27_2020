@@ -11,13 +11,16 @@ from pathlib import Path, PureWindowsPath
 
 # Set up commmand line args
 type = sys.argv[1]
-file_to_recognize = sys.argv[2]
+file_to_recognize = sys.argv[1]
+
 target_dir = os.getcwd()
 
 if type == 'face':
+    file_to_recognize = sys.argv[2]
     target_dir = os.path.join(target_dir, 'data_src', 'aligned')
     file_to_recognize = os.path.join(target_dir, file_to_recognize)
 elif type == 'frame':
+    file_to_recognize = sys.argv[2]
     target_dir = os.path.join(target_dir, 'data_src')
     file_to_recognize = os.path.join(target_dir, file_to_recognize)
 else:
