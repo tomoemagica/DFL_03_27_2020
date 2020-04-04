@@ -5,20 +5,13 @@ import os
 from os import path
 import sys
 from pathlib import Path, PureWindowsPath
+import fnmatch
 
 INTERNAL = os.environ['INTERNAL']
 WORKSPACE = os.environ['WORKSPACE']
 
 detector = dlib.get_frontal_face_detector()
 predictor = dlib.shape_predictor(INTERNAL + "/faceutil/shape_predictor_68_face_landmarks.dat")
-
-
-def get_center(gray_img):
-    moments = cv2.moments(gray_img, False)
-    try:
-        return int(moments['m10'] / moments['m00']), int(moments['m01'] / moments['m00'])
-    except:
-        return None
 
 
 def is_close(y0, y1):
@@ -52,6 +45,11 @@ def eye_point(img, parts, left=True):
 
 target_dir = WORKSPACE
 target_dir = os.path.join(target_dir, 'data_src', 'aligned')
+
+file_count = len(fnmatch.filter(os.listdir(target_dir), "*.jpg"))
+
+print("Checking " + str(file_count) + " files")
+
 match_path = os.path.join(target_dir, 'close_eye')
 
 if not path.isdir(match_path):
@@ -62,9 +60,7 @@ if not path.isdir(match_path):
    else:
        print("Successfully created the directory %s " % match_path)
 
-file_count = len(os.listdir(target_dir))
-
-print("Checking " + str(file_count) + " files")
+Iter = 0
 
 for thisFile in os.listdir(target_dir):
     file_name = os.path.join(target_dir, thisFile)
@@ -77,6 +73,9 @@ for thisFile in os.listdir(target_dir):
         dets = detector(frame[:, :, ::-1])
         len_dets = len(dets)
 
+        Iter += 1
+        print("\r" + str(Iter) + '/' + str(file_count), end='')
+
         if len_dets > 0:
             parts = predictor(frame, dets[0]).parts()
 
@@ -86,3 +85,5 @@ for thisFile in os.listdir(target_dir):
             if is_close_left and is_close_right:
                 move(
                     file_name, match_path)
+
+print("\nDone.")
