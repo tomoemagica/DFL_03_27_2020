@@ -44,6 +44,8 @@ if os.path.isfile(file_to_recognize):
 
 Iter = 0
 
+print("Executing...")
+
 for thisFile in os.listdir(target_dir):
    
     file_name = os.path.join(target_dir, thisFile)
