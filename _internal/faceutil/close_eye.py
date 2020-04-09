@@ -62,6 +62,8 @@ if not path.isdir(match_path):
 
 Iter = 0
 
+print("Executing...")
+
 for thisFile in os.listdir(target_dir):
     file_name = os.path.join(target_dir, thisFile)
     if os.path.isfile(file_name):
