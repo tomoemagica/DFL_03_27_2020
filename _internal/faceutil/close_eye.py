@@ -84,7 +84,7 @@ for thisFile in os.listdir(target_dir):
             is_close_left = eye_point(frame, parts)
             is_close_right = eye_point(frame, parts, False)
 
-            if is_close_left and is_close_right:
+            if is_close_left or is_close_right:
                 move(
                     file_name, match_path)
 
