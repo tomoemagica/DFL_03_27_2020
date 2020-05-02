@@ -5,10 +5,10 @@ from shutil import move
 from os import path
 import sys
 from pathlib import Path, PureWindowsPath
-
+import fnmatch
 
 ap = argparse.ArgumentParser()
-ap.add_argument("-t", "--threshold", type=float, default=11.0,
+ap.add_argument("-t", "--threshold", type=float, default=10.0,
                 help="focus measures that fall below this value will be considered 'blurry'")
 args = vars(ap.parse_args())
 
@@ -42,10 +42,20 @@ if not path.isdir(not_blur_path):
     else:
         print("Successfully created the directory %s " % not_blur_path)
 
+file_count = len(fnmatch.filter(os.listdir(target_dir), "*.jpg"))
+
+print("Checking " + str(file_count) + " files")
+
+Iter = 0
+
+print("Executing...")
 
 for image_path in os.listdir(target_dir):
     file_name = os.path.join(target_dir, image_path)
     if os.path.isfile(file_name):
+        Iter += 1
+        print("\r" + str(Iter) + '/' + str(file_count), end='')
+
         file_name = os.path.join(target_dir, image_path)
 
         image = cv2.imread(file_name)
@@ -59,3 +69,5 @@ for image_path in os.listdir(target_dir):
         else:
             move(
                 file_name, not_blur_path)
+
+print("\nDone.")
