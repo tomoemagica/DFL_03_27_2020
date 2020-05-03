@@ -4,6 +4,7 @@ import os
 import sys
 from os import path
 from pathlib import Path, PureWindowsPath
+import fnmatch
 
 # Usage: py awb.py
 
@@ -22,7 +23,7 @@ WORKSPACE = os.environ['WORKSPACE']
 target_dir = WORKSPACE
 target_dir = os.path.join(target_dir, 'data_dst')
 
-file_count = len(os.listdir(target_dir))
+file_count = len(fnmatch.filter(os.listdir(target_dir), "*.png"))
 
 print("Checking " + str(file_count) + " files")
 
@@ -36,10 +37,18 @@ if not path.isdir(awb_path):
     else:
         print("Successfully created the directory %s " % awb_path)
 
+Iter = 0
+
+print("Executing...")
+
 for thisFile in os.listdir(target_dir):
     file_name = os.path.join(target_dir, thisFile)
     if os.path.isfile(file_name):
+        Iter += 1
+        print("\r" + str(Iter) + '/' + str(file_count), end='')
         img = cv2.imread(file_name)
         final = np.array(white_balance(img))
         basename = os.path.basename(file_name)
         cv2.imwrite(awb_path +  '/' + basename, final)
+
+print("\nDone.")
