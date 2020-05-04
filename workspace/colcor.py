@@ -1,22 +1,19 @@
 from __future__ import division
 import numpy as np
-from six.moves import range
-from six.moves import xrange
-from PIL import Image
-import colorcorrect.algorithm as cca
-from colorcorrect.util import from_pil, to_pil
-from colorcorrect.algorithm import automatic_color_equalization
+from colorcorrect.algorithm import white_balance, clahe
 from shutil import move
 import os
 from os import path
 import sys
 from pathlib import Path, PureWindowsPath
 import fnmatch
+import cv2
 
 '''
 INTERNAL = os.environ['INTERNAL']
 WORKSPACE = os.environ['WORKSPACE']
 '''
+
 target_dir = os.getcwd()
 target_dir = os.path.join(target_dir, 'data_dst')
 
@@ -38,6 +35,7 @@ Iter = 0
 
 print("Executing...")
 
+
 for thisFile in os.listdir(target_dir):
     file_name = os.path.join(target_dir, thisFile)
     if os.path.isfile(file_name):
@@ -46,10 +44,14 @@ for thisFile in os.listdir(target_dir):
         Iter += 1
         print("\r" + str(Iter) + '/' + str(file_count), end='')
 
-        img = Image.open(file_name)
-        img = to_pil(automatic_color_equalization(from_pil(img)))
+        img = cv2.imread(file_name)
+
+        img = white_balance(img)
+        img = clahe(img)
+
         basename = os.path.basename(file_name)
         abs_filename = colcor_path +  '/' + basename
-        img.save(abs_filename)
+        cv2.imwrite(abs_filename, img)
 
 print("\nDone.")
+
