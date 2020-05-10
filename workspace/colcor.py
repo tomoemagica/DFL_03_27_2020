@@ -1,27 +1,27 @@
-from __future__ import division
 import numpy as np
-from colorcorrect.algorithm import white_balance, clahe
+import colorcorrect.algorithm as cca
+from colorcorrect.util import from_pil, to_pil
 from shutil import move
 import os
 from os import path
 import sys
 from pathlib import Path, PureWindowsPath
 import fnmatch
-import cv2
+from PIL import Image, ImageOps, ImageFilter, ImageEnhance
 
-'''
+
 INTERNAL = os.environ['INTERNAL']
 WORKSPACE = os.environ['WORKSPACE']
-'''
 
-target_dir = os.getcwd()
-target_dir = os.path.join(target_dir, 'data_dst')
 
-file_count = len(fnmatch.filter(os.listdir(target_dir), "*.png"))
+target_dir = WORKSPACE
+target_dir = os.path.join(target_dir, 'data_src', 'aligned')
+
+file_count = len(fnmatch.filter(os.listdir(target_dir), "*.jpg"))
 
 print("Checking " + str(file_count) + " files")
 
-colcor_path = os.path.join(target_dir, 'colcor')
+colcor_path = os.path.join(target_dir)
 
 if not path.isdir(colcor_path):
    try:
@@ -44,14 +44,16 @@ for thisFile in os.listdir(target_dir):
         Iter += 1
         print("\r" + str(Iter) + '/' + str(file_count), end='')
 
-        img = cv2.imread(file_name)
+        img = Image.open(file_name)
 
-        img = white_balance(img)
-        img = clahe(img)
+        img = to_pil(cca.stretch(cca.gray_world(from_pil(img))))
+
+        img = ImageOps.autocontrast(img, 0)
+        img = img.filter(ImageFilter.SHARPEN)
 
         basename = os.path.basename(file_name)
         abs_filename = colcor_path +  '/' + basename
-        cv2.imwrite(abs_filename, img)
+        img.save(abs_filename, quality=95)
 
 print("\nDone.")
 
