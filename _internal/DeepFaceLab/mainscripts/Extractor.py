@@ -428,7 +428,7 @@ class ExtractSubprocessor(Subprocessor):
                     if self.cache_image[0] == (h,w,c) + (self.view_scale,filepath):
                         self.image = self.cache_image[1]
                     else:
-                        self.image = cv2.resize (self.original_image, ( int(w*self.view_scale), int(h*self.view_scale) ), interpolation=cv2.INTER_LINEAR)
+                        self.image = cv2.resize (self.original_image, ( int(w*self.view_scale), int(h*self.view_scale) ), interpolation=cv2.INTER_LANCZOS4)
                         self.cache_image = ( (h,w,c) + (self.view_scale,filepath), self.image )
 
                     (h,w,c) = self.image.shape
