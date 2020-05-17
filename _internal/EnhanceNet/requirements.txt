@@ -1,4 +1,4 @@
 scipy==1.2.0
 pillow
-tensorflow==1.13.1
+tensorflow==1.15.2
 tensorflow-cpu==1.15.0
