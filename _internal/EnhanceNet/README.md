@@ -27,7 +27,7 @@ If you use this code as part of a publication, please cite:
 
 ## Upscale images 4x
   - Copy all high-resolution images to the input directory.
-  - Enter the following into a terminal window: `./run.sh`
+  - Enter the following into a terminal window: `py enhancenet.py`
 
 The images will be first downscaled and then upscaled with EnhanceNet.
 
@@ -37,7 +37,7 @@ The images will be first downscaled and then upscaled with EnhanceNet.
   - python (<http://python.org>)
   - the following packages, which usually come with Python)
       - pip (<https://pip.pypa.io/en/stable/installing/>)
-      - virtualenv (`pip install --user virtualenv`)
+      - pip install -r requirements.txt
 
 # Notes
 
@@ -63,7 +63,7 @@ The images will be first downscaled and then upscaled with EnhanceNet.
 - I already have TensorFlow and/or don't want to run the virtualenv script.
 
   Solution: Install the necessary packages (see `run.sh`), then run
-  `python enhancenet.py`
+  `py enhancenet.py`
 
 - I have CUDA and want this to be faster for large images.
 
